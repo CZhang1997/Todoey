@@ -29,6 +29,7 @@ class ToDoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self;
+       // self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         
         
         // Do any additional setup after loading the view, typically from a nib.

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+
 class CategoryTableViewController: UITableViewController {
 
     var categories = [Category]()
