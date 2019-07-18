@@ -8,8 +8,9 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
-class ToDoListViewController: UITableViewController {
+class ToDoListViewController: SwipeViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     var todoItems : Results<Item>?
@@ -32,20 +33,54 @@ class ToDoListViewController: UITableViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let colorHex = selectedCategory?.backgroundColor else {
+            fatalError("color does not work")
+        }
+        
+        updateNavBar(withHexCode: colorHex)
+            self.navigationItem.title = selectedCategory?.name
+            // title = selectedCategory!.name
+        
+        
+    }
     // MARK - Tableview Datasource Methods
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        updateNavBar(withHexCode: "1D9BF6")
+    }
+    //MARK: -Nav Bar Setup
+    func updateNavBar(withHexCode color: String)
+    {
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("Navigation controller does not exitst")
+        }
+        guard let navColor = UIColor(hexString: color) else { fatalError()}
+        navBar.barTintColor = navColor
+        
+        navBar.tintColor = ContrastColorOf(navColor, returnFlat: true)
+        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: navBar.tintColor]
+        searchBar.barTintColor = navColor
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoItems?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
         if let item = todoItems?[indexPath.row] {
            
             cell.accessoryType = item.done ? .checkmark : .none
             cell.textLabel!.text = item.title
+            
+            if let color =  UIColor(hexString: (selectedCategory?.backgroundColor)!)!.darken(byPercentage: (CGFloat(indexPath.row) / CGFloat(todoItems!.count)))
+            {
+                cell.backgroundColor = color
+                cell.textLabel?.textColor = ContrastColorOf(cell.backgroundColor!, returnFlat: true)
+            }
             
         }else {
             cell.textLabel?.text = "No Item Added"
@@ -110,6 +145,20 @@ class ToDoListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
   
+    override func updateModel(at indexPath: IndexPath) {
+       
+        if let ite = self.todoItems?[indexPath.row]
+        {
+            do {
+                try self.realm.write {
+                    self.realm.delete(ite)
+                }
+            }
+            catch {
+                print ("error on deleting item \(error)")
+            }
+        }
+    }
     
     func loadItems()
     {
@@ -117,35 +166,7 @@ class ToDoListViewController: UITableViewController {
         todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
 //        tableView.reloadData()
     }
-//    func savaItems()
-//    {
-//        let encoder = PropertyListEncoder()
-//
-//        do {
-//            let data = try encoder.encode(self.itemArray)
-//
-//            try data.write(to: self.dataFilePath!)
-//        }
-//        catch {
-//            print("Error encoding item array, \(error)")
-//
-//        }
-//        self.tableView.reloadData()
-//    }
-//    func loadItems()
-//    {
-//        if let data  = try? Data(contentsOf:  dataFilePath!)
-//        {
-//            let decoder = PropertyListDecoder()
-//            do {
-//                itemArray =  try decoder.decode([Item].self, from: data)
-//
-//            } catch {
-//                print ("Decode error \(error)")
-//            }
-//        }
-//
-//    }
+
 
 }
 

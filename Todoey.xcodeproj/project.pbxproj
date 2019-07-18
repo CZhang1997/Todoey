@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A71ED3887A02F2C90F7418F1 /* Pods_Todoey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A25ECC80F1F4E7F63178C901 /* Pods_Todoey.framework */; };
+		B914E8CF2225E16D00129E15 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B914E8CE2225E16D00129E15 /* SwipeViewController.swift */; };
 		B92E5F0921F535F300C40DB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E5F0821F535F300C40DB7 /* AppDelegate.swift */; };
 		B92E5F0B21F535F300C40DB7 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92E5F0A21F535F300C40DB7 /* ToDoListViewController.swift */; };
 		B92E5F0E21F535F300C40DB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92E5F0C21F535F300C40DB7 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		2A74681B9E6C135E5A2AB19C /* Pods-Todoey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.debug.xcconfig"; sourceTree = "<group>"; };
 		78487971AC0C7411A3FF92C2 /* Pods-Todoey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.release.xcconfig"; sourceTree = "<group>"; };
 		A25ECC80F1F4E7F63178C901 /* Pods_Todoey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B914E8CE2225E16D00129E15 /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		B92E5F0521F535F300C40DB7 /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92E5F0821F535F300C40DB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B92E5F0A21F535F300C40DB7 /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		B92E5F1D21F5483B00C40DB7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B914E8CE2225E16D00129E15 /* SwipeViewController.swift */,
 				B9C9038C2223792C001D45C2 /* CategoryTableViewController.swift */,
 				B92E5F0A21F535F300C40DB7 /* ToDoListViewController.swift */,
 			);
@@ -226,22 +229,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -256,6 +252,7 @@
 				B92E5F0921F535F300C40DB7 /* AppDelegate.swift in Sources */,
 				B9C9038D2223792C001D45C2 /* CategoryTableViewController.swift in Sources */,
 				B9C9039722248078001D45C2 /* Category.swift in Sources */,
+				B914E8CF2225E16D00129E15 /* SwipeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
